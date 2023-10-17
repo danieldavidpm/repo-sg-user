@@ -101,6 +101,9 @@ namespace Datos.Services
                               Id = ua.Id,
                               IdApp = ap.Id,
                               Nombre = ap.Nombre,
+                              Descripcion = ap.Descripcion,
+                              ImagenApp = ap.ImagenApp,
+                              ContainerDeAdjuntos = ap.ContainerDeAdjuntos,
                           });
 
             return await Task.Factory.StartNew(() => { return lst.ToList(); });

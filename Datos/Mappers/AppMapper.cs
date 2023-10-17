@@ -10,7 +10,10 @@ namespace Datos.Mappers
             return new App()
             {
                 Id = dto.Id,
-                Nombre = dto.Nombre
+                Nombre = dto.Nombre,
+                Descripcion = dto.Descripcion,
+                ImagenApp = dto.ImagenApp,
+                ContainerDeAdjuntos = dto.ContainerDeAdjuntos,
             };
         }
 
@@ -19,7 +22,10 @@ namespace Datos.Mappers
             return new AppAddDto()
             {
                 Id = dto.Id,
-                Nombre = dto.Nombre
+                Nombre = dto.Nombre,
+                Descripcion = dto.Descripcion,
+                ImagenApp = dto.ImagenApp,
+                ContainerDeAdjuntos = dto.ContainerDeAdjuntos,
             };
         }
     }

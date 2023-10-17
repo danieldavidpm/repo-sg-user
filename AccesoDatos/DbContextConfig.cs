@@ -19,6 +19,16 @@ namespace AccesoDatos
         public DbSet<Modulo> Modulo { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
 
+        //configuraciones generales ::
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            base.ConfigureConventions(configurationBuilder);
+
+            configurationBuilder.Properties<string>().HaveColumnType("varchar(50)");
+
+        }
+
+        //configuraciones especificas ::
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccesoDatos.Migrations
 {
     [DbContext(typeof(DbContextConfig))]
-    [Migration("20230620001207_dataseedss")]
-    partial class dataseedss
+    [Migration("20231017220633_initialProd")]
+    partial class initialProd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,10 +32,25 @@ namespace AccesoDatos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ContainerDeAdjuntos")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("ImagenApp")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Nombre")
+                        .IsUnique()
+                        .HasFilter("[Nombre] IS NOT NULL");
 
                     b.ToTable("App", (string)null);
 
@@ -43,12 +58,34 @@ namespace AccesoDatos.Migrations
                         new
                         {
                             Id = 1,
+                            ContainerDeAdjuntos = "f000solu01",
+                            Descripcion = "Administración de usuarios",
+                            ImagenApp = "000_app_admin_user.jpg",
                             Nombre = "App Users Management"
                         },
                         new
                         {
                             Id = 2,
-                            Nombre = "SAIGNa Web"
+                            ContainerDeAdjuntos = "f000solu01",
+                            Descripcion = "Sistema de red local.",
+                            ImagenApp = "000_app_SAIGNa_Local_Icono.ico",
+                            Nombre = "SAIGNa Local"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ContainerDeAdjuntos = "f000solu01",
+                            Descripcion = "Sistema web para instalaciones de gas.",
+                            ImagenApp = "000_app_logoTmp_Solumas.png",
+                            Nombre = "SAIGNa Web - Solu"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ContainerDeAdjuntos = "f001sghi01",
+                            Descripcion = "Sistema web para instalaciones de gas",
+                            ImagenApp = "000_app_logoTmp_Solumas.png",
+                            Nombre = "SAIGNa Web - Hidrocarburos"
                         });
                 });
 
@@ -92,7 +129,7 @@ namespace AccesoDatos.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -128,7 +165,7 @@ namespace AccesoDatos.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -291,14 +328,26 @@ namespace AccesoDatos.Migrations
                         new
                         {
                             Id = 1,
-                            IdApp = 2,
-                            IdUsu = 3
+                            IdApp = 1,
+                            IdUsu = 1
                         },
                         new
                         {
                             Id = 2,
                             IdApp = 2,
-                            IdUsu = 4
+                            IdUsu = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IdApp = 3,
+                            IdUsu = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IdApp = 4,
+                            IdUsu = 1
                         });
                 });
 
@@ -311,7 +360,9 @@ namespace AccesoDatos.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<DateTime>("FechaVencimiento")
                         .HasColumnType("datetime2");
@@ -323,15 +374,22 @@ namespace AccesoDatos.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImagenPerfil")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("IdCliente");
 
@@ -344,37 +402,41 @@ namespace AccesoDatos.Migrations
                         {
                             Id = 1,
                             Email = "dani@gmail.com",
-                            FechaVencimiento = new DateTime(2023, 6, 19, 19, 12, 6, 556, DateTimeKind.Local).AddTicks(9465),
+                            FechaVencimiento = new DateTime(2023, 10, 17, 17, 6, 33, 322, DateTimeKind.Local).AddTicks(3554),
                             IdCliente = 1,
                             IdRol = 1,
-                            Nombre = "Daniel Perez"
+                            Nombre = "Daniel Perez",
+                            Password = "123456"
                         },
                         new
                         {
                             Id = 2,
                             Email = "jhon@gmail.com",
-                            FechaVencimiento = new DateTime(2023, 6, 19, 19, 12, 6, 556, DateTimeKind.Local).AddTicks(9476),
+                            FechaVencimiento = new DateTime(2023, 10, 17, 17, 6, 33, 322, DateTimeKind.Local).AddTicks(3564),
                             IdCliente = 1,
                             IdRol = 1,
-                            Nombre = "Jhon Chonta"
+                            Nombre = "Jhon Chonta",
+                            Password = "123456"
                         },
                         new
                         {
                             Id = 3,
                             Email = "marco@gmail.com",
-                            FechaVencimiento = new DateTime(2023, 6, 19, 19, 12, 6, 556, DateTimeKind.Local).AddTicks(9477),
+                            FechaVencimiento = new DateTime(2023, 10, 17, 17, 6, 33, 322, DateTimeKind.Local).AddTicks(3565),
                             IdCliente = 2,
                             IdRol = 3,
-                            Nombre = "Marco Tarmeño"
+                            Nombre = "Marco Tarmeño",
+                            Password = "123456"
                         },
                         new
                         {
                             Id = 4,
                             Email = "abi@gmail.com",
-                            FechaVencimiento = new DateTime(2023, 6, 19, 19, 12, 6, 556, DateTimeKind.Local).AddTicks(9478),
+                            FechaVencimiento = new DateTime(2023, 10, 17, 17, 6, 33, 322, DateTimeKind.Local).AddTicks(3566),
                             IdCliente = 2,
                             IdRol = 4,
-                            Nombre = "Abigail Garcia"
+                            Nombre = "Abigail Garcia",
+                            Password = "123456"
                         });
                 });
 

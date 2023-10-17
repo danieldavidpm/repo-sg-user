@@ -27,8 +27,10 @@ namespace AccesoDatos.EntityConfig
         public void SendData(EntityTypeBuilder<UsuApp> builder)
         {
             builder.HasData(
-            new UsuApp { Id = 1, IdUsu = 3, IdApp = 2 },
-            new UsuApp { Id = 2, IdUsu = 4, IdApp = 2 }
+            new UsuApp { Id = 1, IdUsu = 1, IdApp = 1 },
+            new UsuApp { Id = 2, IdUsu = 1, IdApp = 2 },
+            new UsuApp { Id = 3, IdUsu = 1, IdApp = 3 },
+            new UsuApp { Id = 4, IdUsu = 1, IdApp = 4 }
             );
         }
     }

@@ -16,6 +16,22 @@ namespace AccesoDatos.EntityConfig
             builder.ToTable("Usuario");
             builder.HasKey(p => p.Id);
 
+            builder.Property(e => e.Nombre)
+            .IsRequired()
+            .HasMaxLength(200);
+
+            builder.Property(e => e.Email)
+            .IsRequired()
+            .HasMaxLength(200);
+            builder.HasIndex(e => e.Email) //para q no se repita el Email
+            .IsUnique();
+
+            builder.Property(e => e.Password)
+            .HasMaxLength(200);
+
+            builder.Property(e => e.ImagenPerfil)
+            .HasMaxLength(200);
+
             builder.HasOne(x => x.rol)
             .WithMany(e => e.Usuarios)
             .HasForeignKey(e => e.IdRol)
@@ -32,10 +48,10 @@ namespace AccesoDatos.EntityConfig
         public void SendData(EntityTypeBuilder<Usuario> builder)
         {
             builder.HasData(
-            new Usuario { Id = 1, Nombre = "Daniel Perez", Email = "dani@gmail.com", FechaVencimiento = DateTime.Now, IdRol = 1, IdCliente = 1 },
-            new Usuario { Id = 2, Nombre = "Jhon Chonta", Email = "jhon@gmail.com", FechaVencimiento = DateTime.Now, IdRol = 1, IdCliente = 1 },
-            new Usuario { Id = 3, Nombre = "Marco Tarmeño", Email = "marco@gmail.com", FechaVencimiento = DateTime.Now, IdRol = 3, IdCliente = 2 },
-            new Usuario { Id = 4, Nombre = "Abigail Garcia", Email = "abi@gmail.com", FechaVencimiento = DateTime.Now, IdRol = 4, IdCliente = 2 }
+            new Usuario { Id = 1, Nombre = "Daniel Perez", Email = "dani@gmail.com", Password = "123456", FechaVencimiento = DateTime.Now, IdRol = 1, IdCliente = 1 },
+            new Usuario { Id = 2, Nombre = "Jhon Chonta", Email = "jhon@gmail.com", Password = "123456", FechaVencimiento = DateTime.Now, IdRol = 1, IdCliente = 1 },
+            new Usuario { Id = 3, Nombre = "Marco Tarmeño", Email = "marco@gmail.com", Password = "123456", FechaVencimiento = DateTime.Now, IdRol = 3, IdCliente = 2 },
+            new Usuario { Id = 4, Nombre = "Abigail Garcia", Email = "abi@gmail.com", Password = "123456", FechaVencimiento = DateTime.Now, IdRol = 4, IdCliente = 2 }
             );
         }
     }

@@ -26,7 +26,7 @@ namespace api_user_security.Controllers
             return new OkObjectResult(new JsonResult<UsuAppGetAllDto?>(entity));
         }
 
-        [HttpGet("AplicacionesXusu{id}")]
+        [HttpGet("AplicacionesXusu/{id}")]
         public async Task<IActionResult> GetAppsByIdUse(int id)
         {
             var lst = await _UsuAppN.GetAppsByIdUse(id);

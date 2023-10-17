@@ -61,6 +61,9 @@ namespace Datos.Services
                        {
                            Id = a.Id,
                            Nombre = a.Nombre,
+                           Descripcion = a.Descripcion,
+                           ImagenApp = a.ImagenApp,
+                           ContainerDeAdjuntos = a.ContainerDeAdjuntos,
                        });
 
             return await Task.Factory.StartNew(() => { return lst.ToList(); });
@@ -74,7 +77,9 @@ namespace Datos.Services
                           {
                               Id = a.Id,
                               Nombre = a.Nombre,
-
+                              Descripcion = a.Descripcion,
+                              ImagenApp = a.ImagenApp,
+                              ContainerDeAdjuntos = a.ContainerDeAdjuntos,
                           });
 
             return await entity.FirstOrDefaultAsync();
@@ -89,6 +94,9 @@ namespace Datos.Services
             {
 
                 entityToUpdate.Nombre = dto.Nombre;
+                entityToUpdate.Descripcion = dto.Descripcion;
+                entityToUpdate.ImagenApp = dto.ImagenApp;
+                entityToUpdate.ContainerDeAdjuntos = dto.ContainerDeAdjuntos;
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();

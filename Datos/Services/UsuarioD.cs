@@ -135,7 +135,8 @@ namespace Datos.Services
 
                 entityToUpdate.Nombre = dto.Nombre;
                 entityToUpdate.Email = dto.Email;
-                entityToUpdate.Password = dto.Password;
+                //entityToUpdate.Password = dto.Password;
+                entityToUpdate.Password = BCrypt.HashPassword(dto.Password);
                 entityToUpdate.ImagenPerfil = dto.ImagenPerfil;
                 entityToUpdate.FechaVencimiento = dto.FechaVencimiento;
                 entityToUpdate.IdRol = dto.IdRol;
